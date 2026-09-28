@@ -5,6 +5,7 @@
 [![Version](https://img.shields.io/badge/version-0.2.0-59e1ff)](CHANGELOG.md)
 [![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Windows-18242d)](#対応環境)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Download](https://img.shields.io/badge/download-v0.2.0-blue)](https://github.com/momuandteasteam/OrcaPet/releases/tag/v0.2.0)
 
 ![OrcaPet icon](assets/icon.png)
 
@@ -34,6 +35,8 @@ OrcaPetは、Orcaで動いているCodex、Claude Code、OpenCode、Geminiなど
 Orca本体と、Codex Pet v2形式のPetパッケージが必要です。配布版には第三者のPet画像を同梱していません。
 
 ## クイックスタート
+
+最新版は[GitHub Releases](https://github.com/momuandteasteam/OrcaPet/releases/latest)からダウンロードできます。
 
 ### macOS
 
