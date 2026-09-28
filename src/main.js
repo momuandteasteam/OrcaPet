@@ -123,7 +123,7 @@ function createWindow() {
     }
   });
   window.setAlwaysOnTop(true, 'floating');
-  window.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+  if (process.platform !== 'win32') window.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   window.loadFile(path.join(__dirname, 'index.html'));
   resizeWindow();
   const area = screen.getPrimaryDisplay().workArea;
@@ -161,7 +161,7 @@ function createInfoWindow() {
     }
   });
   infoWindow.setAlwaysOnTop(true, 'floating');
-  infoWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+  if (process.platform !== 'win32') infoWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   infoWindow.setIgnoreMouseEvents(true);
   infoWindow.loadFile(path.join(__dirname, 'info.html'));
   positionInfoWindow();

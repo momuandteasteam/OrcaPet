@@ -23,6 +23,14 @@ npm run dist:mac
 
 成果物は`dist/mac-arm64/OrcaPet.app`です。現在の設定ではビルドしたMacのアーキテクチャ向けに未署名の`.app`を生成します。一般配布ではApple Developer IDによるコード署名、公証、ZIPまたはDMGの作成が別途必要です。
 
+## Windowsアプリを生成する
+
+```sh
+npm run dist:win
+```
+
+`dist/`へx64 NSIS Setup版とPortable版を生成します。一般配布ではWindowsコード署名証明書による署名を推奨します。
+
 ## プロジェクト指定
 
 ```sh
@@ -38,3 +46,4 @@ open -na /Applications/OrcaPet.app --args --project /path/to/project
 - Working、Waiting、Doneの表示を確認する
 - ドラッグ、クリック停止、アイドル走行を確認する
 - Pet画像のライセンス対象物をアプリへ同梱していない
+- macOSとWindowsの成果物を各OS実機で起動確認する

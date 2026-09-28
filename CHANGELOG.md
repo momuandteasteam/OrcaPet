@@ -2,6 +2,17 @@
 
 このプロジェクトでは[Semantic Versioning](https://semver.org/)を使用します。
 
+## 0.2.0 — 2026-09-29
+
+### Added
+
+- Windows x64用NSISインストーラーとポータブル版のビルド
+- WindowsのOrca CLI自動検出
+
+### Changed
+
+- Pet ZIP展開をOS非依存の実装へ変更
+
 ## 0.1.1 — 2026-09-29
 
 ### Fixed

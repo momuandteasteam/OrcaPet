@@ -1,6 +1,6 @@
 # インストールガイド
 
-## OrcaPet.appをインストールする
+## macOSへインストールする
 
 1. 配布物を展開します。
 2. `OrcaPet.app`をmacOSの`アプリケーション`フォルダへドラッグします。
@@ -32,3 +32,17 @@ Petを右クリックし、「別プロジェクトのPetを起動…」からOr
 2. `/Applications/OrcaPet.app`をゴミ箱へ移動します。
 
 設定とインストール済みPetも削除する場合は、`~/.orcapet/`を別途削除してください。Codex側の`~/.codex/pets/`には影響しません。
+
+## Windowsへインストールする
+
+### Setup版
+
+1. `OrcaPet Setup 0.2.0.exe`を起動します。
+2. インストール先とショートカットを選択します。
+3. スタートメニューまたはデスクトップからOrcaPetを起動します。
+
+### Portable版
+
+Portable `.exe`を任意のフォルダへ置いて起動します。設定とPetは実行ファイルではなく、`%USERPROFILE%\.orcapet\`へ保存されます。
+
+Windowsで削除する場合は「インストールされているアプリ」からOrcaPetをアンインストールします。Portable版は終了後に実行ファイルを削除します。

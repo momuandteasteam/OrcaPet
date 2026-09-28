@@ -5,9 +5,18 @@ const path = require('node:path');
 
 const ACTIVE_AGENT = /(?:^|\/|\s)(codex|claude|opencode|cursor-agent|gemini|aider|goose|amp)(?:\s|$)/i;
 const ORCA = /(?:\/Orca\.app\/|(?:^|\s)orca(?:\s|$))/i;
-const DEFAULT_ORCA_CLI = process.platform === 'darwin'
-  ? '/Applications/Orca.app/Contents/Resources/bin/orca'
-  : 'orca';
+function defaultOrcaCli(env = process.env, platform = process.platform) {
+  if (env.ORCA_CLI) return env.ORCA_CLI;
+  if (platform === 'darwin') return '/Applications/Orca.app/Contents/Resources/bin/orca';
+  if (platform === 'win32') {
+    const candidates = [
+      env.LOCALAPPDATA && path.join(env.LOCALAPPDATA, 'Programs', 'Orca', 'resources', 'bin', 'orca.exe'),
+      env.LOCALAPPDATA && path.join(env.LOCALAPPDATA, 'orca', 'resources', 'bin', 'orca.exe')
+    ].filter(Boolean);
+    return candidates.find((candidate) => fs.existsSync(candidate)) || 'orca.exe';
+  }
+  return 'orca';
+}
 
 function normalizeAgentState(state) {
   if (['working', 'running', 'active', 'thinking', 'tool'].includes(state)) return 'running';
@@ -118,7 +127,7 @@ class StatusMonitor {
     this.onStatus = onStatus;
     this.intervalMs = options.intervalMs || 2500;
     this.statusFile = options.statusFile || path.join(process.env.ORCAPET_HOME || path.join(os.homedir(), '.orcapet'), 'status.json');
-    this.orcaCli = options.orcaCli || process.env.ORCA_CLI || DEFAULT_ORCA_CLI;
+    this.orcaCli = options.orcaCli || defaultOrcaCli();
     this.projectPath = options.projectPath || null;
     this.timer = null;
     this.last = '';
@@ -159,4 +168,4 @@ class StatusMonitor {
   }
 }
 
-module.exports = { ACTIVE_AGENT, ORCA, StatusMonitor, descendantsOf, detectState, normalizeAgentState, parseOrcaSnapshot, parseProcessList, readOverride };
+module.exports = { ACTIVE_AGENT, ORCA, StatusMonitor, defaultOrcaCli, descendantsOf, detectState, normalizeAgentState, parseOrcaSnapshot, parseProcessList, readOverride };

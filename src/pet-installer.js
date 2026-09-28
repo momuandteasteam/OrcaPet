@@ -1,11 +1,8 @@
-const { execFile } = require('node:child_process');
+const AdmZip = require('adm-zip');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { promisify } = require('node:util');
 const { readPet } = require('./pet-store');
-
-const execFileAsync = promisify(execFile);
 
 function findPetDirectories(root, maxDepth = 4) {
   const found = [];
@@ -22,15 +19,18 @@ function findPetDirectories(root, maxDepth = 4) {
   return found;
 }
 
-function validateZipEntries(output) {
-  const entries = output.split('\n').map((entry) => entry.trim()).filter(Boolean);
+function validateZipEntries(entries) {
+  if (typeof entries === 'string') entries = entries.split('\n').map((entry) => ({ entryName: entry.trim(), header: { size: 0 } })).filter((entry) => entry.entryName);
   if (entries.length > 500) throw new Error('ZIP内のファイル数が多すぎます');
+  let totalSize = 0;
   for (const entry of entries) {
-    const normalized = entry.replaceAll('\\', '/');
+    const normalized = entry.entryName.replaceAll('\\', '/');
     if (normalized.startsWith('/') || normalized.split('/').includes('..')) {
       throw new Error('ZIPに安全でないパスが含まれています');
     }
+    totalSize += entry.header?.size || 0;
   }
+  if (totalSize > 500 * 1024 * 1024) throw new Error('ZIPの展開サイズが大きすぎます');
   return entries;
 }
 
@@ -45,11 +45,11 @@ async function resolvePetDirectory(selectedPath) {
   if (path.basename(selectedPath) === 'pet.json') return { directory: path.dirname(selectedPath), cleanup: null };
   if (!/\.(zip|codex-pet)$/i.test(selectedPath)) throw new Error('フォルダ、pet.json、ZIPのいずれかを選択してください');
 
-  const listing = await execFileAsync('/usr/bin/unzip', ['-Z1', selectedPath], { maxBuffer: 1024 * 1024 });
-  validateZipEntries(listing.stdout);
+  const archive = new AdmZip(selectedPath);
+  validateZipEntries(archive.getEntries());
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'orcapet-install-'));
   try {
-    await execFileAsync('/usr/bin/ditto', ['-x', '-k', selectedPath, temporary]);
+    archive.extractAllTo(temporary, true, false);
     const directories = findPetDirectories(temporary);
     if (directories.length !== 1) throw new Error(`ZIP内のPetパッケージが${directories.length}件でした。1件だけ含めてください`);
     return { directory: directories[0], cleanup: () => fs.rmSync(temporary, { recursive: true, force: true }) };
