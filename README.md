@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Download](https://img.shields.io/badge/download-v0.2.0-blue)](https://github.com/momuandteasteam/OrcaPet/releases/tag/v0.2.0)
 
-![OrcaPet icon](assets/icon.png)
+<img src="assets/hero.png" alt="通常、Halloween、ChristmasのRin Petが並ぶOrcaPetのHERO画像" width="100%">
 
 OrcaPetは、Orcaで動いているCodex、Claude Code、OpenCode、Geminiなどの状態をデスクトップPetへ反映します。Codex Pet v2パッケージを変換せず利用でき、プロジェクトごとに別のPetを起動できます。
 
@@ -32,7 +32,7 @@ OrcaPetは、Orcaで動いているCodex、Claude Code、OpenCode、Geminiなど
 | macOS Intel | ソースからビルド可能 | `.app` |
 | Linux | 未対応 | — |
 
-Orca本体と、Codex Pet v2形式のPetパッケージが必要です。配布版には第三者のPet画像を同梱していません。
+Orca本体と、Codex Pet v2形式のPetパッケージが必要です。アプリ本体にはPetスプライトを同梱していません。
 
 ## クイックスタート
 
