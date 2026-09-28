@@ -1,0 +1,44 @@
+:root {
+  color-scheme: dark; font-family: ui-rounded, system-ui, sans-serif;
+  --pet-width: 115.2px;
+  --pet-height: 124.8px;
+}
+* { box-sizing: border-box; }
+html, body, #stage { width: 100%; height: 100%; margin: 0; overflow: hidden; background: transparent; user-select: none; }
+#stage { position: relative; -webkit-app-region: drag; }
+#sprite {
+  -webkit-app-region: no-drag;
+  position: absolute;
+  left: 50%; bottom: 4px;
+  width: var(--pet-width); height: var(--pet-height);
+  transform: translateX(-50%);
+  background-repeat: no-repeat;
+  background-size: 800% 1100%;
+  image-rendering: auto;
+  filter: drop-shadow(0 6px 5px rgb(0 0 0 / 28%));
+}
+#bubble {
+  position: absolute; z-index: 3; left: 50%; top: 3px; transform: translateX(-50%);
+  max-width: 95%; padding: 5px 9px; border-radius: 12px;
+  color: #e9fbff; background: rgb(7 20 29 / 84%); border: 1px solid rgb(89 225 255 / 45%);
+  font-size: 11px; white-space: nowrap; opacity: 0; transition: opacity .18s;
+  pointer-events: none;
+}
+#bubble.visible { opacity: 1; }
+button, select, input { -webkit-app-region: no-drag; }
+#empty { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 14px; border: 0; border-radius: 999px; background: #56ddf6; color: #071219; font-weight: 700; }
+#menu {
+  -webkit-app-region: no-drag; position: absolute; z-index: 5; inset: 8px;
+  padding: 12px; border-radius: 15px; background: rgb(7 18 27 / 94%); border: 1px solid rgb(89 225 255 / 45%);
+  box-shadow: 0 12px 35px rgb(0 0 0 / 45%); backdrop-filter: blur(16px); font-size: 12px; overflow: hidden;
+}
+#menu strong { display: block; color: #71e7ff; font-size: 14px; margin-bottom: 8px; }
+.close-menu {
+  position: absolute; top: 8px; right: 8px; width: 28px !important; height: 28px;
+  margin: 0 !important; padding: 0 !important; border-radius: 50% !important;
+  font-size: 19px; line-height: 24px; color: #b8cad1 !important;
+}
+#menu label { display: grid; gap: 4px; margin: 8px 0; color: #b8cad1; }
+#menu .check { display: flex; align-items: center; gap: 6px; }
+#menu select, #menu button { width: 100%; border: 1px solid #34505c; border-radius: 8px; padding: 6px; background: #102731; color: white; }
+#menu button { margin-top: 6px; cursor: pointer; }

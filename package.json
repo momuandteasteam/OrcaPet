@@ -1,0 +1,49 @@
+{
+  "name": "orcapet",
+  "version": "0.1.1",
+  "author": "momuandteasteam",
+  "description": "A Codex Pet v2 compatible desktop companion for Orca",
+  "main": "src/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "dist:mac": "electron-builder --mac dir",
+    "test": "node --test",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/pet-store.js && node --check src/pet-installer.js && node --check src/status-monitor.js && node --check src/renderer.js && node --check src/info-renderer.js"
+  },
+  "keywords": [
+    "orca",
+    "codex-pet",
+    "desktop-pet",
+    "electron"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^38.2.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.momuandteasteam.orcapet",
+    "productName": "OrcaPet",
+    "asar": true,
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/icon.png",
+        "to": "icon.png"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "assets/icon.png",
+      "target": ["dir"]
+    }
+  },
+  "allowScripts": {
+    "electron@38.8.6": true
+  }
+}

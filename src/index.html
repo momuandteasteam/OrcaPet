@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' file: data:; style-src 'self'; script-src 'self'">
+    <title>OrcaPet</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main id="stage" aria-label="OrcaPet">
+      <div id="bubble" role="status"></div>
+      <div id="sprite" draggable="false" aria-label="Pet"></div>
+      <button id="empty" type="button" hidden>Codex Pet を選択</button>
+      <section id="menu" hidden>
+        <strong>OrcaPet</strong>
+        <button id="close-menu" class="close-menu" type="button" aria-label="設定を閉じる">×</button>
+        <label>Pet<select id="pet-select"></select></label>
+        <label>大きさ<input id="scale" type="range" min="0.5" max="2.5" step="0.1"></label>
+        <label class="check"><input id="wander" type="checkbox">アイドル時に端へ走る</label>
+        <button id="install-pet" type="button">Petをインストール…</button>
+        <button id="new-project" type="button">別プロジェクトのPetを起動…</button>
+        <button id="browse" type="button">別の Pet を開く…</button>
+        <button id="quit" type="button">終了</button>
+      </section>
+    </main>
+    <script src="renderer.js"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+:root { color-scheme: dark; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif; }
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: transparent; }
+#panel {
+  width: 100%; min-height: 58px; display: grid; grid-template-columns: 10px 1fr; gap: 9px; align-items: center;
+  padding: 9px 12px; color: #eafaff; background: rgb(7 18 27 / 91%);
+  border: 1px solid rgb(89 225 255 / 44%); border-radius: 15px;
+  box-shadow: 0 7px 22px rgb(0 0 0 / 34%); backdrop-filter: blur(16px);
+}
+#dot { width: 8px; height: 8px; border-radius: 50%; background: #7c8b91; box-shadow: 0 0 9px currentColor; }
+#panel[data-state="running"] #dot { background: #59e1ff; color: #59e1ff; }
+#panel[data-state="waiting"] #dot { background: #ffd166; color: #ffd166; }
+#panel[data-state="failed"] #dot { background: #ff667a; color: #ff667a; }
+#panel[data-state="review"] #dot { background: #b990ff; color: #b990ff; }
+#primary { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 700; line-height: 18px; }
+#secondary { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #9fb6c0; font-size: 10px; line-height: 16px; }
